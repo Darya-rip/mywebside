@@ -17,11 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home.views import index
+from home.views import index1
+from home.views import index2
 from course import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', index),
     path('',index),
-    path('Course/',views.index)
+    path('course/',views.index),
+    path('contact/',index1),
+    path('aboutus/',index2),
 ]

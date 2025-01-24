@@ -4,3 +4,9 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, "index.html")
+
+def index1(request):
+    return HttpResponse('Contact page')
+
+def index2(request):
+    return HttpResponse('About us')
