@@ -19,13 +19,16 @@ from django.urls import path
 from home.views import index
 from home.views import index1
 from home.views import index2
+from home.views import tutor
 from course import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', index),
-    path('',index),
-    path('course/',views.index),
-    path('contact/',index1),
-    path('aboutus/',index2),
+    path('home/', index, name = 'home'),
+    path('',index, name = 'home'),
+    path('course/',views.index, name = 'course'),
+    path('contact/',index1, name = 'contact'),
+    path('aboutus/',index2, name = 'about'),
+    path('tutors/',tutor, name = 'tutor'),
 ]
