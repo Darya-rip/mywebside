@@ -29,6 +29,6 @@ urlpatterns = [
     path('',index, name = 'home'),
     path('course/',views.index, name = 'course'),
     path('contact/',index1, name = 'contact'),
-    path('aboutus/',index2, name = 'about'),
+    path('about/',index2, name = 'about'),
     path('tutors/',tutor, name = 'tutor'),
 ]
