@@ -7,23 +7,20 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="section-title">Our Teachers</h2>
+        <h2 class="section-title">Our subject</h2>
       </div>
-      {% for rs in tutor_cr %}
+      {% for sub in subjects_cr %}
       <!-- teacher -->
       <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
         <div class="card border-0 rounded-0 hover-shadow">
           <img class="card-img-top rounded-0" src="images/teachers/teacher-3.jpg" alt="teacher">
           <div class="card-body">
             <a href="teacher-single.html">
-              <h4 class="card-title">{{ rs.name | safe }}</h4>
+              <h4 class="card-title">{{ sub.title | safe }}</h4>
             </a>
-            <p>{{rs.subject | safe }}</p>
+            <p class ='card-text mb-4'>{{sub.description | safe }}</p>
             <ul class="list-inline">
-              <li class="list-inline-item"><a class="text-color" href="#"><i class="ti-facebook"></i></a></li>
-              <li class="list-inline-item"><a class="text-color" href="#"><i class="ti-twitter-alt"></i></a></li>
-              <li class="list-inline-item"><a class="text-color" href="#"><i class="ti-google"></i></a></li>
-              <li class="list-inline-item"><a class="text-color" href="#"><i class="ti-linkedin"></i></a></li>
+              <li class="list-inline-item"><a class="text-color" href="{% url 'subject_detail' sub.id sub.slug %}"><i class="ti-facebook"></i></a></li>
             </ul>
           </div>
         </div>

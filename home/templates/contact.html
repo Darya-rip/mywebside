@@ -16,7 +16,16 @@
   </div>
 </section>
 <!-- /page title -->
-
+<div style  = 'text-align: center;'>
+  <p>{% if messages %}
+  {%for message in messages%}
+  <div class = 'alert alert-{{ message.tags}}' role = 'alert'>
+  {{message}}
+  </div>
+   {%endfor%}
+  {%endif%}
+  </p>
+</div>
 <!-- contact -->
 <section class="section bg-gray">
   <div class="container">
@@ -27,9 +36,10 @@
     </div>
     <div class="row">
       <div class="col-lg-7 mb-4 mb-lg-0">
-        <form action="#">
+        <form action="" method="post" id="ContactForm">
+          {% csrf_token %}
           <input type="text" class="form-control mb-3" id="name" name="name" placeholder="Your Name">
-          <input type="email" class="form-control mb-3" id="mail" name="mail" placeholder="Your Email">
+          <input type="phone" class="form-control mb-3" id="phone" name="phone" placeholder="Your Email">
           <input type="text" class="form-control mb-3" id="subject" name="subject" placeholder="Subject">
           <textarea name="message" id="message" class="form-control mb-3" placeholder="Your Message"></textarea>
           <button type="submit" value="send" class="btn btn-primary">SEND MESSAGE</button>

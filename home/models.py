@@ -1,4 +1,7 @@
 from django.db import models
+from django.forms import TextInput
+from django.forms import ModelForm
+
 # Create your models here.
 
 class Setting(models.Model):
@@ -20,3 +23,32 @@ class Setting(models.Model):
     contact = models.TextField()
     def __str__(self):
         return self.title
+
+class ContactMessage(models.Model):
+    STATUS = (
+        ('New','New'),
+        ('Read','Read'),
+        ('Closed','Closed'),
+    )
+    name = models.CharField(max_length=25)
+    phone = models.CharField(max_length=100)
+    subject = models.CharField(max_length=100)
+    message = models.TextField()
+    status = models.CharField(max_length=20, default='New')
+    ip = models.CharField(max_length=20)
+    note = models.CharField(max_length=100)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.name
+
+class ContactForm(ModelForm):
+    class Meta:
+        model = ContactMessage
+        fields = ['name','phone','subject','message']
+        widgets = {
+            'name': TextInput(attrs={'class':'input','placeholder':'Name & Surname'}),
+            'subject': TextInput(attrs={'class': 'input', 'placeholder': 'Subject'}),
+            'phone': TextInput(attrs={'class': 'input', 'placeholder': 'Phone Number'}),
+            'massage': TextInput(attrs={'class': 'input', 'placeholder': 'Your Message','rows':'5'}),
+        }

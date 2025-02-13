@@ -7,7 +7,10 @@ from course.models import Tutor
 # class CourseAdmin(admin.ModelAdmin):
 #     list_display = ["title", "slug"]
 #     list_filter = ['course']
-#
+class  SubjectAdmin(admin.ModelAdmin):
+    list_display = ['title','course','image_tag']
+    list_filter = ['course']
+    readonly_fields = ('image_tag',)
 # class StudentAdmin(admin.ModelAdmin):
 #     list_display = ["name", "description"]
 # class TutorAdmin(admin.ModelAdmin):
@@ -15,6 +18,6 @@ from course.models import Tutor
 #     list_filter = ['subject']
 
 admin.site.register(Course)
-admin.site.register(Subject)
+admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Student)
 admin.site.register(Tutor)

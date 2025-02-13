@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 # Create your models here.
 
 class Course(models.Model):
@@ -21,6 +22,10 @@ class Subject(models.Model):
     slug = models.SlugField(unique=True)
     def __str__(self):
         return self.title
+    def image_tag(self):
+        return mark_safe('<img scr="{}" height="50"/>'.format(self.image.url))
+
+    image_tag.short_description = 'Image'
 
 class Student(models.Model):
     name = models.CharField(max_length=100)
