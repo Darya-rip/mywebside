@@ -45,7 +45,7 @@ def student(request):
     setting = Setting.objects.get()
     context = {'student_cr':student_cr,
                'setting': setting }
-    return render(request,'student.html',context)
+    return render(request,'students.html',context)
 
 def subject_detail(request, id, slug):
     subject_cr = Subject.objects.all().order_by('id')[:4]
@@ -58,12 +58,12 @@ def subject_detail(request, id, slug):
                'course':course }
     return render(request, 'subject_detail.html', context)
 
-def index1(request):
+def contactus(request):
     setting = Setting.objects.get()
     context = {'setting': setting}
     return render(request,'contact.html',context)
 
-def index2(request):
+def about(request):
     setting = Setting.objects.get()
     context = {'setting': setting}
     return render(request,'aboutus.html',context)

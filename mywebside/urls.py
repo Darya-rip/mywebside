@@ -18,8 +18,8 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path
 from home.views import index
-from home.views import index1
-from home.views import index2
+from home.views import contactus
+from home.views import about
 from home.views import tutor
 from home.views import student
 from home.views import subjects
@@ -34,8 +34,8 @@ urlpatterns = [
     path('home/', index, name = 'home'),
     path('',index, name = 'home'),
     path('course/',views.index, name = 'course'),
-    path('contact/',index1, name = 'contact'),
-    path('about/',index2, name = 'about'),
+    path('contact/',contactus, name = 'contact'),
+    path('about/',about, name = 'about'),
     path('tutors/',tutor, name = 'tutor'),
     path('student/',student, name = 'student'),
     path('subjects/',subjects, name = 'subjects'),
