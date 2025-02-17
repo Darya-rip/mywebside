@@ -47,7 +47,7 @@
       </div>
       <div class="col-lg-5">
         <p class="mb-5">{{ setting.description | safe }}</p>
-        <a href="tel:+8802057843248" class="text-color h5 d-block">+880 20 5784 3248</a>
+        <a href="tel:+8802057843248" class="text-color h5 d-block">{{ setting.phone | safe }}</a>
         <a href="mailto:yourmail@email.com" class="mb-5 text-color h5 d-block">{{ setting.email | safe }}</a>
         <p>{{ setting.address | safe }}</p>
       </div>

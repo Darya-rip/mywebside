@@ -1,5 +1,6 @@
 {% load static %}
 {% load active_link_tags %}
+{% load i18n %}
 
 <!-- header -->
 <header class="fixed-top header">
@@ -14,15 +15,34 @@
             <li class="list-inline-item mx-0"><a class="d-inline-block p-2 text-color" href="#"><i class="ti-twitter-alt"></i></a></li>
             <li class="list-inline-item mx-0"><a class="d-inline-block p-2 text-color" href="#"><i class="ti-linkedin"></i></a></li>
             <li class="list-inline-item mx-0"><a class="d-inline-block p-2 text-color" href="#"><i class="ti-instagram"></i></a></li>
+            <li class="dropdown default-dropdown list-inline-item mx-0 ">
+                <form action="{% url 'selectlanguage' %}" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                    <select name="language" onchange="submit()" >
+
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                        {% endfor %}
+
+                    </select>
+                    <noscript>
+                        <input type="submit" value="Set" />
+                    </noscript>
+                </form>
+            </li>
+
           </ul>
         </div>
         <div class="col-lg-8 text-center text-lg-right">
           <ul class="list-inline">
-            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="notice.html">notice</a></li>
-            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="research.html">research</a></li>
-            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="scholarship.html">SCHOLARSHIP</a></li>
             <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#loginModal">login</a></li>
-            <li class="list-inline-item"><a class="text-uppercase text-color p-sm-2 py-2 px-0 d-inline-block" href="#" data-toggle="modal" data-target="#signupModal">register</a></li>
           </ul>
         </div>
       </div>
@@ -41,24 +61,24 @@
         <div class="collapse navbar-collapse" id="navigation">
           <ul class="navbar-nav ml-auto text-center">
             <li class="nav-item {% active_link 'home' strict=True %}">
-              <a class="nav-link" href="{% url 'home' %}">Home</a>
+              <a class="nav-link" href= {% url 'home' %}>{% trans "НОМЕ" %}</a>
             </li>
             <li class="nav-item {% active_link 'about' strict=True%} @@about">
-              <a class="nav-link" href="{% url 'about' %}">About</a>
+              <a class="nav-link" href= {% url 'about' %}>{% trans "ABOUT" %}</a>
             <li class="nav-item {% active_link 'student' strict=True%} @@student">
-              <a class="nav-link" href="{% url 'student' %}">student</a>
+              <a class="nav-link" href= {% url 'student' %}>{% trans "STUDENT" %}</a>
 
             <li class="nav-item dropdown view">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                Pages
+                {% trans "Pages" %}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{% url 'tutor' %}">Teacher</a>
+                <a class="dropdown-item" href="{% url 'tutor' %}">{% trans "TEACHER" %}</a>
               </div>
             </li>
             <li class="nav-item {% active_link 'contact'%} @@contact">
-              <a class="nav-link" href="{% url 'contact' %}">CONTACT</a>
+              <a class="nav-link" href= {% url 'contact' %}>{% trans "CONTACT" %}</a>
             </li>
           </ul>
         </div>
