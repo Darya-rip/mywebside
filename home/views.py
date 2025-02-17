@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.utils.translation.trans_real import translation
+from django.utils import translation
 
 from home.models import Setting, ContactForm
 from course.models import Course
@@ -89,7 +89,7 @@ def contact(request):
     return render(request,'contact.html',context)
 
 def selectlanguage(request):
-    if request.metod == 'POST':
+    if request.method == 'POST':
         lang = request.POST['language']
         translation.activate(lang)
         request.session[settings.LANGUAGE_COOKIE_NAME]= lang

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from django.forms import ModelForm
 # Create your models here.
 
 class Course(models.Model):

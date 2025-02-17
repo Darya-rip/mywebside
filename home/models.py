@@ -3,6 +3,14 @@ from django.forms import TextInput
 from django.forms import ModelForm
 
 # Create your models here.
+class Language(models.Model):
+    name = models.CharField(max_length=25)
+    code = models.CharField(max_length=5)
+    status = models.BooleanField()
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.name
 
 class Setting(models.Model):
     title = models.CharField(max_length=100)
