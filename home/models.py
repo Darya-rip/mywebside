@@ -1,6 +1,8 @@
 from django.db import models
 from django.forms import TextInput
 from django.forms import ModelForm
+from django.templatetags.i18n import language
+
 
 # Create your models here.
 class Language(models.Model):
@@ -11,6 +13,12 @@ class Language(models.Model):
     update_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.name
+llist = Language.objects.all()
+list1 = []
+for rs in llist:
+    list1.append((rs.code, rs.name))
+langlist = (list1)
+
 
 class Setting(models.Model):
     title = models.CharField(max_length=100)
@@ -60,3 +68,16 @@ class ContactForm(ModelForm):
             'phone': TextInput(attrs={'class': 'input', 'placeholder': 'Phone Number'}),
             'massage': TextInput(attrs={'class': 'input', 'placeholder': 'Your Message','rows':'5'}),
         }
+class SettingLang(models.Model):
+    setting = models.ForeignKey(Setting, on_delete= models.CASCADE)
+    lang = models.CharField(max_length=6, choices=langlist)
+    title = models.CharField(max_length=100)
+    keywords = models.CharField(max_length=255)
+    description = models.TextField()
+    phone = models.CharField(max_length=100)
+    email = models.EmailField()
+    address = models.CharField(max_length=100)
+    smtp_server = models.CharField(max_length=100)
+    smtp_email = models.CharField(max_length=100)
+    smtp_password = models.CharField(max_length=100)
+    smtp_port = models.CharField(max_length=100)
