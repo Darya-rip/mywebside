@@ -18,7 +18,7 @@ list1 = []
 for rs in llist:
     list1.append((rs.code, rs.name))
 langlist = (list1)
-
+print(langlist)
 
 class Setting(models.Model):
     title = models.CharField(max_length=100)
@@ -81,3 +81,5 @@ class SettingLang(models.Model):
     smtp_email = models.CharField(max_length=100)
     smtp_password = models.CharField(max_length=100)
     smtp_port = models.CharField(max_length=100)
+    def __str__(self):
+        return self.title

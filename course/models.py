@@ -58,6 +58,8 @@ class CourseLang(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='images/')
     slug = models.SlugField(unique=True)
+    def __str__(self):
+        return self.title
 
 class SubjectLang(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
@@ -70,6 +72,8 @@ class SubjectLang(models.Model):
     price = models.CharField(max_length=100)
     detail = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
+    def __str__(self):
+        return self.title
     def get_absolute_url(self):
         return reverse('subject_detail',kwargs={'slug': self.slug})
 
@@ -81,6 +85,8 @@ class TutorLang(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='images/')
+    def __str__(self):
+        return self.name
 
 class StudentLang(models.Model):
     Student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -88,4 +94,6 @@ class StudentLang(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='images/')
+    def __str__(self):
+        return self.name
 
